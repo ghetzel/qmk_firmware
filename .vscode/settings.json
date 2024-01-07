@@ -28,6 +28,6 @@
     "[json]": {
 	    "editor.formatOnSave": false
     },
-    "window.title": "${activeEditorShort}${separator}${rootName} ${separator} [Branch: gortboard]",
+    "window.title": "${activeEditorShort}${separator}${rootName} ${separator} [Branch: gortboard]${separator}[Branch: gortboard]",
     "cmake.configureOnOpen": true
 }

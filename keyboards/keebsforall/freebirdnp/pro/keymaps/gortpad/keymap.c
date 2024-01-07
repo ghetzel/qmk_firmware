@@ -25,8 +25,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_P0,            KC_PDOT, KC_PENT ),
 
     [1] = LAYOUT_numpad_6x4(
-        KC_TRNS, KC_MRWD, KC_MFFD, KC_F16,
-        TG(2),   TG(3), KC_TRNS, KC_TRNS,
+        KC_TRNS, TG(3), KC_TRNS, KC_TRNS,
+        TG(2),   KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS,
@@ -41,12 +41,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_BTN1,          KC_BTN2, KC_BTN3),
 
     [3] = LAYOUT_numpad_6x4(
-        TO(0),   KC_TRNS, KC_TRNS, KC_TRNS,
-        TO(0),   KC_TRNS, KC_TRNS, KC_LCTL,
-        KC_Q,    KC_W,    KC_E,
-        KC_A,    KC_TRNS, KC_D,    KC_LSFT,
-        KC_TRNS, KC_S,    KC_TRNS,
-        KC_TRNS,          KC_TRNS, KC_TRNS)
+        TO(0),   KC_TRNS, MI_OCTD, MI_OCTU,
+        TO(0),   MI_Cs2,  MI_D2, MI_Ds2,
+        MI_C2,   MI_A1,   MI_As1,
+        MI_Gs1,  MI_F1,   MI_Fs1,  MI_B1,
+        MI_E1,   MI_Cs1,  MI_D1,
+        MI_C1,            MI_Ds1,  MI_G1)
 };
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
