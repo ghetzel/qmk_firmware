@@ -17,5 +17,6 @@ BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
 RGBLIGHT_ENABLE = no        # Enable keyboard RGB underglow
 AUDIO_ENABLE = no           # Audio output
 REPEAT_KEY_ENABLE = yes
+KEY_LOCK_ENABLE = yes
 
 DYNAMIC_MACRO_ENABLE = yes  # User-defined runtime macros
