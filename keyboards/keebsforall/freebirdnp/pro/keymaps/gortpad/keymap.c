@@ -14,6 +14,39 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
+#define SPAM_DELAY 50  // 50 milliseconds between spams
+
+bool spam_active = false;
+uint32_t spam_timer = 0;
+
+// Place the above near the beginning of the keymap
+
+enum custom_keycodes {
+    GZ_SPAM = SAFE_RANGE, // Create a keycode to make your toggle initialize
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case GZ_SPAM:  // When you press custom SPAM keycode
+        if (record->event.pressed) {
+            spam_active = !spam_active;  // Toggle spamming
+            spam_timer = timer_read32(); // Reset spam timer
+        }
+        break;
+    }
+    return true;
+}
+
+
+void matrix_scan_user(void){
+    if (spam_active) {  
+        // Check if it's been SPAM_DELAY milliseconds since the last spam
+        if (timer_elapsed32(spam_timer) > SPAM_DELAY) {
+            tap_code(KC_BTN1);          
+            spam_timer = timer_read32();
+        }
+    }
+}
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT_numpad_6x4(
@@ -30,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS,
-        KC_TRNS,          KC_TRNS, QK_BOOT),
+        GZ_SPAM,          KC_TRNS, QK_BOOT),
 
     [2] = LAYOUT_numpad_6x4(
         TO(0),   KC_MRWD, KC_MFFD, KC_TRNS,
